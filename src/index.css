@@ -6,78 +6,103 @@
 All colors MUST be HSL.
 */
 
+/* 
+  COLOR PALETTE OPTIONS:
+  
+  Option 1 (Implemented): Professional Navy + Vibrant Orange
+  - Primary: Deep Navy #1a2f5a (trust, stability)
+  - Accent: Electric Orange #ff6b35 (action, energy)
+  - Best for: Power washing, general contractors
+  
+  Option 2: Forest Green + Bright Yellow
+  - Primary: 152 60% 25% (forest green - growth, eco)
+  - Accent: 48 100% 50% (bright yellow - visibility)
+  - Best for: Landscaping, eco-friendly services
+  
+  Option 3: Deep Blue + Teal
+  - Primary: 210 100% 20% (professional blue)
+  - Accent: 180 70% 45% (modern teal)
+  - Best for: Electricians, tech services
+*/
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 220 20% 15%;
+    --foreground: 220 20% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 220 20% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 220 20% 12%;
 
     /* Navy blue - trust & professionalism */
     --primary: 220 70% 18%;
     --primary-foreground: 0 0% 100%;
+    
+    --primary-light: 220 50% 35%;
+    --primary-dark: 220 80% 12%;
 
-    /* Light background variant */
-    --secondary: 220 20% 96%;
+    /* Light backgrounds */
+    --secondary: 220 25% 97%;
     --secondary-foreground: 220 70% 18%;
 
     --muted: 220 15% 94%;
-    --muted-foreground: 220 15% 45%;
+    --muted-foreground: 220 20% 40%;
 
-    /* Coral/Orange accent - energy & action */
-    --accent: 15 85% 60%;
+    /* Electric Orange accent - high conversion CTA */
+    --accent: 15 92% 58%;
     --accent-foreground: 0 0% 100%;
+    --accent-hover: 15 92% 52%;
+
+    /* Success green for trust badges */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 15 85% 60%;
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 15 92% 58%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens for agency site */
-    --hero-gradient-start: 220 70% 18%;
-    --hero-gradient-end: 220 60% 30%;
+    /* Enhanced shadows for depth */
+    --shadow-soft: 0 1px 3px rgb(0 0 0 / 0.05);
+    --shadow-medium: 0 4px 12px rgb(0 0 0 / 0.08);
+    --shadow-strong: 0 8px 24px rgb(0 0 0 / 0.12);
+    --shadow-glow: 0 0 0 3px hsl(var(--accent) / 0.15);
     
-    --shadow-soft: 0 2px 8px rgb(0 0 0 / 0.04);
-    --shadow-medium: 0 4px 16px rgb(0 0 0 / 0.08);
-    --shadow-strong: 0 8px 32px rgb(0 0 0 / 0.12);
+    /* Hero gradient */
+    --hero-gradient: linear-gradient(135deg, hsl(220 70% 18%) 0%, hsl(220 65% 28%) 100%);
+    
+    /* Spacing scale (used for consistent padding/margins) */
+    --space-section: 5rem;
+    --space-component: 3rem;
+    --space-element: 1.5rem;
   }
 
   .dark {
     --background: 220 25% 8%;
     --foreground: 0 0% 98%;
-
     --card: 220 25% 10%;
     --card-foreground: 0 0% 98%;
-
     --popover: 220 25% 10%;
     --popover-foreground: 0 0% 98%;
-
     --primary: 0 0% 98%;
     --primary-foreground: 220 70% 18%;
-
     --secondary: 220 20% 15%;
     --secondary-foreground: 0 0% 98%;
-
     --muted: 220 20% 15%;
     --muted-foreground: 220 10% 60%;
-
-    --accent: 15 85% 60%;
+    --accent: 15 92% 58%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 220 20% 20%;
     --input: 220 20% 20%;
-    --ring: 15 85% 60%;
+    --ring: 15 92% 58%;
   }
 }
 
@@ -87,13 +112,51 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Typography Hierarchy */
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.3;
+  }
+
+  h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+  }
+
+  p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-weight: 400;
   }
 }
 
@@ -103,7 +166,7 @@ All colors MUST be HSL.
   }
   
   .hero-gradient {
-    background: linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-end)));
+    background: var(--hero-gradient);
   }
 
   .shadow-soft {
@@ -116,5 +179,53 @@ All colors MUST be HSL.
 
   .shadow-strong {
     box-shadow: var(--shadow-strong);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Spacing utilities */
+  .section-spacing {
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+  }
+
+  /* Animation utilities */
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Hover lift effect */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
   }
 }
